@@ -1,0 +1,6 @@
+framework module Pods_SilkyWXList {
+  umbrella header "Pods-SilkyWXList-umbrella.h"
+
+  export *
+  module * { export * }
+}

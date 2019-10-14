@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="dgListBottomCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="295" height="67"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="295" height="67"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1小时前" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksL-Bt-1Q9">
+                        <rect key="frame" x="76" y="10" width="46" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.73725348711013794" green="0.73321729898452759" blue="0.74136155843734741" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A0P-I1-yNA">
+                        <rect key="frame" x="249" y="8" width="30" height="20"/>
+                        <color key="backgroundColor" red="0.96861451864242554" green="0.96467727422714233" blue="0.96862691640853882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Acj-Dr-uDs"/>
+                            <constraint firstAttribute="width" constant="30" id="OFI-pO-5nv"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <state key="normal" title="··"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="moreClick:" destination="gTV-IL-0wX" eventType="touchUpInside" id="8pc-Oc-zKU"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VdA-Q3-OL5">
+                        <rect key="frame" x="0.0" y="41" width="295" height="1"/>
+                        <color key="backgroundColor" red="0.90194249153137207" green="0.89793306589126587" blue="0.90604913234710693" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="OaI-fr-If0"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="SEy-5g-ep8" firstAttribute="trailing" secondItem="A0P-I1-yNA" secondAttribute="trailing" constant="16" id="HXF-IM-hoZ"/>
+                <constraint firstItem="SEy-5g-ep8" firstAttribute="trailing" secondItem="VdA-Q3-OL5" secondAttribute="trailing" id="PVx-Fe-ghv"/>
+                <constraint firstItem="A0P-I1-yNA" firstAttribute="centerY" secondItem="ksL-Bt-1Q9" secondAttribute="centerY" id="bTi-Pl-aTs"/>
+                <constraint firstItem="ksL-Bt-1Q9" firstAttribute="leading" secondItem="SEy-5g-ep8" secondAttribute="leading" constant="76" id="hud-iQ-fwD"/>
+                <constraint firstItem="ksL-Bt-1Q9" firstAttribute="top" secondItem="SEy-5g-ep8" secondAttribute="top" constant="10" id="jRB-0e-Moz"/>
+                <constraint firstItem="VdA-Q3-OL5" firstAttribute="top" secondItem="ksL-Bt-1Q9" secondAttribute="bottom" constant="15" id="jbc-1C-dxA"/>
+                <constraint firstItem="VdA-Q3-OL5" firstAttribute="leading" secondItem="SEy-5g-ep8" secondAttribute="leading" id="zcA-tc-Dkk"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
+            <size key="customSize" width="295" height="67"/>
+            <connections>
+                <outlet property="publicTime" destination="ksL-Bt-1Q9" id="ads-s2-mnh"/>
+            </connections>
+            <point key="canvasLocation" x="109.59999999999999" y="106.59670164917542"/>
+        </collectionViewCell>
+    </objects>
+</document>
