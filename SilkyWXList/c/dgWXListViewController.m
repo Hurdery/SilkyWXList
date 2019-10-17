@@ -36,7 +36,6 @@
     self.adapter.dataSource = self;
     self.adapter.collectionView = self.collectionView;
     self.adapter.scrollViewDelegate = self;
-
     [self addHeadRefresh];
     [self addLoadMoreRefresh];
     
