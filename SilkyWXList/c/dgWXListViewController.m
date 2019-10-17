@@ -5,7 +5,8 @@
 //  Created by 孟德出品 on 2019/10/9.
 //  Copyright © 2019 Doogore. All rights reserved.
 //
-
+#warning 如有任何问题，欢迎积极联系交流
+#warning 官方指定唯一联系方式 QQ:1589353390
 #import "dgWXListViewController.h"
 #import "YYFPSLabel.h"
 #import "dgListHeadImageC.h"
