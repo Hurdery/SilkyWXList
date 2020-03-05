@@ -20,7 +20,7 @@
 
 -(CGSize)sizeForItemAtIndex:(NSInteger)index {
     
-    return CGSizeMake(SCREEN_WIDTH, 20);
+    return CGSizeMake(SCREEN_WIDTH, 30);
     
 }
 

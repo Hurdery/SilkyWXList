@@ -10,7 +10,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol dgNavViewDelegate <NSObject>
+
+@optional
+
+// 返回
+- (void)navBackClick;
+// 照相
+- (void)navCameraClick;
+
+@end
+
+
 @interface dgNavView : UIView
+@property (nonatomic, weak) id <dgNavViewDelegate> delegate;
 @property (nonatomic,strong)UIView *navV;
 @property (nonatomic,strong)UILabel *navLabel;
 @property (nonatomic,assign)BOOL isScrollUp;

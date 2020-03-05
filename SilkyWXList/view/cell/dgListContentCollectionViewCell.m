@@ -92,7 +92,7 @@
     } else if (picCount <= 6) {
         return 2*PHOTO_WIDTH + 3 * verticalSpace;
     } else  {
-        return 3*PHOTO_WIDTH + 2 * verticalSpace;
+        return 3*PHOTO_WIDTH + 4 * verticalSpace;
     }
     
 }

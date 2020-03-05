@@ -16,7 +16,7 @@
 #import "dgHeaderRefreshView.h"
 #import "dgNavView.h"
 
-@interface dgWXListViewController ()<IGListAdapterDataSource,UIScrollViewDelegate>
+@interface dgWXListViewController ()<IGListAdapterDataSource,UIScrollViewDelegate,dgNavViewDelegate>
 
 @property (nonatomic,strong) IGListAdapter *adapter;
 @property (nonatomic,strong) IGListCollectionView *collectionView;
@@ -32,15 +32,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
+    
+    //     准备数据
     [self prepareListData];
 
+    //     主列表
     self.adapter.dataSource = self;
     self.adapter.collectionView = self.collectionView;
     self.adapter.scrollViewDelegate = self;
+    
+    //     加载数据
     [self addHeadRefresh];
     [self addLoadMoreRefresh];
     
+    //     导航栏
     [self.view addSubview:self.navView];
+    
+    //     FPS监控
     [self addFPSLabel];
 }
 
@@ -49,28 +57,9 @@
     self.collectionView.frame = self.view.frame;
 }
 
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
-    self.contentOffsetY = scrollView.contentOffset.y;
-
-    self.navView.navV.alpha = self.contentOffsetY / 150;
-    self.navView.navLabel.alpha = self.contentOffsetY / 150;
-
-    if (self.contentOffsetY / 150 > 0.6) {
-        
-        self.navView.isScrollUp = YES;
-        
-    } else {
-        
-        self.navView.isScrollUp = NO;
-
-    }
-    
-}
-
 #pragma mark 数据
 - (void)prepareListData {
+    
     //初始化数据
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"list" withExtension:@"json"];
     NSData *data = [NSData dataWithContentsOfURL:url];
@@ -82,6 +71,11 @@
     self.dicM = [NSJSONSerialization JSONObjectWithData:dataM options:NSJSONReadingAllowFragments error:nil];
     
 }
+
+/**
+ 添加头尾刷新控件
+ 
+ */
 - (void)addHeadRefresh {
     
     self.collectionView.mj_header = [dgHeaderRefreshView headerWithRefreshingBlock:^{
@@ -102,12 +96,16 @@
     
 }
 
+
+/// 加载更多数据
 - (void)loadMoreData {
     
     NSMutableArray *tempA = [NSMutableArray array];
 
+    // 一次来十条
     for (int i=0; i < 10; i++) {
         
+    // 随机装载数据模型
         dgListModel *lm = [[dgListModel alloc]init];
         lm.modelid = self.dicM[@"modelid"][arc4random_uniform(10)];
         lm.luserName = self.dicM[@"luserName"][arc4random_uniform(10)];
@@ -123,7 +121,8 @@
         lm.limage = imageStr;
         lm.lavatar = self.dicM[@"limage"][arc4random_uniform(10)];
         lm.lcontent = self.dicM[@"lcontent"][arc4random_uniform(10)];
-        lm.publicTime = self.dicM[@"publicTime"][arc4random_uniform(10)];
+        lm.llocation= self.dicM[@"llocation"][arc4random_uniform(10)];
+        lm.lpublicTime = self.dicM[@"lpublicTime"][arc4random_uniform(10)];
         [tempA addObject:lm];
     }
     
@@ -139,6 +138,7 @@
     
     if (!_navView) {
         _navView = [[dgNavView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, NAV_HEIGHT)];
+        _navView.delegate = self;
     }
     return _navView;
     
@@ -147,8 +147,8 @@
 - (void)addFPSLabel {
     
     YYFPSLabel *fpsLabel = [YYFPSLabel new];
-    fpsLabel.frame = CGRectMake(SCREEN_WIDTH-100, SCREEN_HEIGHT-120, 60, 30);
-    [[UIApplication sharedApplication].keyWindow addSubview:fpsLabel];
+    fpsLabel.frame = CGRectMake(SCREEN_WIDTH-100, SCREEN_HEIGHT-110, 60, 30);
+    [self.view addSubview:fpsLabel];
     
 }
 
@@ -199,5 +199,33 @@
         stack.inset = UIEdgeInsetsMake(-60, 0, 0, 0);
         return stack;
     }
+
+/// 滑动改变导航栏状态
+/// @param scrollView <#scrollView description#>
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    self.contentOffsetY = scrollView.contentOffset.y;
+
+    self.navView.navV.alpha = self.contentOffsetY / 150;
+    self.navView.navLabel.alpha = self.contentOffsetY / 150;
+
+    if (self.contentOffsetY / 150 > 0.6) {
+        
+        self.navView.isScrollUp = YES;
+        
+    } else {
+        
+        self.navView.isScrollUp = NO;
+
+    }
+    
+}
+
+#pragma mark click
+- (void)navBackClick {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 
 @end

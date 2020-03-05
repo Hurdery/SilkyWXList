@@ -16,11 +16,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIButton *wxBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    wxBtn.frame = CGRectMake(self.view.centerX - 50, self.view.centerY - 50, 100, 100);
+    [wxBtn setBackgroundImage:[UIImage imageNamed:@"wx"] forState:0];
+    [self.view addSubview:wxBtn];
+    [wxBtn
+     addTarget:self action:@selector(wxClick) forControlEvents:1<<6];
+    
 }
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+-(void)wxClick {
     
-    [self presentViewController:[dgWXListViewController new] animated:YES completion:nil];
+    dgWXListViewController *wvc = [dgWXListViewController new];
+    wvc.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self presentViewController:wvc animated:YES completion:nil];
    
 }
 

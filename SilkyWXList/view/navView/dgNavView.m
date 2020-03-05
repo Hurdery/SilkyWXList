@@ -31,12 +31,16 @@
     backBtn.frame = CGRectMake(20, navV.height - 40 , 30, 30);
     [backBtn setImage:[UIImage imageNamed:@"back_w"] forState:0];
     [self addSubview:backBtn];
+    backBtn.tag = 1;
+    [backBtn addTarget:self action:@selector(navClick:) forControlEvents:1<<6];
     self.backBtn = backBtn;
     
     UIButton *camareBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     camareBtn.frame = CGRectMake(SCREEN_WIDTH - 20 - 30,navV.height - 40 , 30, 30);
     [camareBtn setImage:[UIImage imageNamed:@"camera_w"] forState:0];
     [self addSubview:camareBtn];
+    camareBtn.tag = 2;
+    [camareBtn addTarget:self action:@selector(navClick:) forControlEvents:1<<6];
     self.camareBtn = camareBtn;
     
     UILabel *navLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, navV.height - 40, SCREEN_WIDTH, 30)];
@@ -63,4 +67,23 @@
     }
     
 }
+
+- (void)navClick:(UIButton *)btn {
+    
+    if (btn.tag == 1) {
+        
+        if ([self.delegate respondsToSelector:@selector(navBackClick)]) {
+            [self.delegate navBackClick];
+        }
+        
+    } else {
+        
+        if ([self.delegate respondsToSelector:@selector(navCameraClick)]) {
+            [self.delegate navCameraClick];
+        }
+    }
+    
+}
+
+
 @end

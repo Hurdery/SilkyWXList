@@ -11,7 +11,7 @@
 
 @implementation dgListBottomC
 -(NSInteger)numberOfItems{
-    if (kStringIsEmpty(_object.publicTime)) {
+    if (kStringIsEmpty(_object.lpublicTime)) {
         return 0;
     }
     return 1;
@@ -19,7 +19,7 @@
 
 -(CGSize)sizeForItemAtIndex:(NSInteger)index{
     
-    return CGSizeMake(SCREEN_WIDTH,60);
+    return CGSizeMake(SCREEN_WIDTH,50);
     
 }
 
